@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# Local / secrets
+.env
+.env.*
+secrets/
+
+# Large project files
+data/
+models/
+outputs/
+packages/
+
+# Logs
+*.log
