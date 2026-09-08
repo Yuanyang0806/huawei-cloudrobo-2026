@@ -1,0 +1,7 @@
+[submodule "third_party/GALAXEA-A1Z"]
+	path = third_party/GALAXEA-A1Z
+	url = https://github.com/userguide-galaxea/GALAXEA-A1Z.git
+	branch = gripper
+[submodule "third_party/a1z-teleop"]
+	path = third_party/a1z-teleop
+	url = https://github.com/suhanwu/a1z-teleop.git

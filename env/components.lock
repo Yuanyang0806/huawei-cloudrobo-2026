@@ -1,0 +1,30 @@
+system:
+  ubuntu: "24.04.4 LTS"
+  kernel: "7.0.0-31-generic"
+
+gpu:
+  model: "NVIDIA GeForce RTX 4060 Laptop GPU"
+  driver: "580.173.02"
+
+runtime:
+  miniforge: "26.5.3"
+  conda_env: "lerobot061"
+  python: "3.12.14"
+  lerobot: "0.6.1"
+  pytorch: "2.11.0+cu130"
+  cuda_runtime: "13.0"
+  ffmpeg: "9.0.1"
+
+robot:
+  a1z_sdk_version: "0.0.1"
+  galaxea_a1z_branch: "gripper"
+  galaxea_a1z_commit: "e931ecd0e25ad35df251097ba42921b3d2fa7224"
+  a1z_teleop_commit: "c3275a32951a52f4a7d9e7d9976eb687652526ba"
+  lerobot_robot_galaxea_a1z: "0.2.0"
+
+cloudrobo:
+  r2c_sdk: "NOT_INSTALLED"
+
+policy:
+  target: "pi0.5"
+  inference_location: "cloud"
