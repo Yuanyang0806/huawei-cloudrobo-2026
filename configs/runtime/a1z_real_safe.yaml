@@ -30,15 +30,15 @@ schema_version: "v2.1"
 
 runtime:
   # 动作执行频率 (Hz)，同时决定观测发布检查频率。建议 10–30 Hz
-  publish_hz: 25.0
+  publish_hz: 10.0
   # 最大运行时长 (秒)，0 表示一直运行，Ctrl+C 停止
   max_duration_s: 0.0
   # dry_run=true 时不执行推理出来的 action，但正常发送观测数据
   dry_run: false
   # 发布观测后等待 action 的超时 (秒)
-  action_response_timeout_s: 5.0
+  action_response_timeout_s: 30.0
   # 每次 chunk 最多入队的 action 步数，多余的丢弃。-1 表示全部采用
-  max_enqueue_actions_per_chunk: -1
+  max_enqueue_actions_per_chunk: 5
   # 是否启用 action chunk 对齐（避免轨迹跳跃）
   enable_action_chunk_alignment: false
   # 队列中剩余 action 数低于此阈值时提前请求新 observation。0 退化为队列空才发布
@@ -112,14 +112,14 @@ hardware:
 
       # ── 安全限位 (默认值，可按需调整) ─────────────────────────────
       # 每次调用 setpoint 变化硬上限 (rad)，速度限位的兜底
-      max_step_rad: 0.06
+      max_step_rad: 0.03
       # 最大关节速度 (deg/s)
-      max_joint_vel_deg_s: 30.0
+      max_joint_vel_deg_s: 20.0
       # 相对零位 ±N° 软限位；null = 仅标定范围
       max_joint_travel_deg: null
       # 退出时平滑回零位 (需已标定，rad 模式未标定时自动跳过)
       return_to_zero_on_exit: true
-      return_speed_deg_s: 25.0
+      return_speed_deg_s: 15.0
 
       # ── 夹爪 (SDK 原生 Gripper，与手臂同一 CAN 总线) ──────────────
       enable_gripper: true
@@ -146,14 +146,14 @@ hardware:
         # 腕部相机
         cam_wrist:
           type: opencv
-          index_or_path: /dev/video14
+          index_or_path: "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Depth_Camera_405_Intel_R__RealSense_TM__Depth_Camera_405_262723072113-video-index4"
           width: 640
           height: 480
           fps: 30
         # 头部/全局相机
         cam_external:
           type: opencv
-          index_or_path: /dev/video8
+          index_or_path: "/dev/v4l/by-id/usb-Intel_R__RealSense_TM__Camera_Intel_R__RealSense_TM__515_00000000F1230126-video-index0"
           width: 960
           height: 540
           fps: 30
@@ -203,13 +203,13 @@ device_to_r2c:
       source_path: "cam_external"
       transforms:
         # lerobot opencv 相机输出 RGB，jpeg 编码前先转 BGR (cv2.imencode 要求 BGR)
-        # - rgb_to_bgr
+        - rgb_to_bgr
         - ndarray_to_jpeg
 
     - target_key: "images.color.wrist"
       source_path: "cam_wrist"
       transforms:
-        # - rgb_to_bgr
+        - rgb_to_bgr
         - ndarray_to_jpeg
 
 # ── R2C→设备 动作映射 ────────────────────────────────────────────────

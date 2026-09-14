@@ -30,7 +30,7 @@ schema_version: "v2.1"
 
 runtime:
   # 动作执行频率 (Hz)，同时决定观测发布检查频率。建议 10–30 Hz
-  publish_hz: 25.0
+  publish_hz: 15.0
   # 最大运行时长 (秒)，0 表示一直运行，Ctrl+C 停止
   max_duration_s: 0.0
   # dry_run=true 时不执行推理出来的 action，但正常发送观测数据
@@ -114,11 +114,11 @@ hardware:
       # 每次调用 setpoint 变化硬上限 (rad)，速度限位的兜底
       max_step_rad: 0.06
       # 最大关节速度 (deg/s)
-      max_joint_vel_deg_s: 30.0
+      max_joint_vel_deg_s: 50.0
       # 相对零位 ±N° 软限位；null = 仅标定范围
       max_joint_travel_deg: null
       # 退出时平滑回零位 (需已标定，rad 模式未标定时自动跳过)
-      return_to_zero_on_exit: true
+      return_to_zero_on_exit: false
       return_speed_deg_s: 25.0
 
       # ── 夹爪 (SDK 原生 Gripper，与手臂同一 CAN 总线) ──────────────

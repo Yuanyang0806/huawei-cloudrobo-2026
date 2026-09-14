@@ -21,3 +21,7 @@ packages/
 
 # Logs
 *.log
+datasets/
+cert_config_*.zip
+*.pem
+*.key

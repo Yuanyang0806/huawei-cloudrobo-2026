@@ -2,7 +2,9 @@
   "model_feature_mapping": {
     "input_features": {
       "observation.state": {
-        "shape": [7],
+        "shape": [
+          7
+        ],
         "dtype": "float32",
         "values": [
           "observation.joint_states.position@{arm_joint1}",
@@ -14,26 +16,24 @@
           "observation.joint_states.position@{gripper}"
         ]
       },
-
       "observation.images.cam_external": {
-        "dtype": "float32",
+        "dtype": "uint8",
         "value": "observations.images.color.front"
       },
-
       "observation.images.cam_wrist": {
-        "dtype": "float32",
+        "dtype": "uint8",
         "value": "observations.images.color.wrist"
       },
-
       "task": {
         "type": "PROMPT"
       }
     },
-
     "output_features": {
       "action": {
         "chunk_size": 50,
-        "shape": [7],
+        "shape": [
+          7
+        ],
         "values": [
           "actions.joint_states.position@{arm_joint1}",
           "actions.joint_states.position@{arm_joint2}",
@@ -46,9 +46,8 @@
       }
     }
   },
-
   "stop_condition": {
-    "max_iter_num": 90,
-    "max_run_time": 3
+    "max_iter_num": 60,
+    "max_run_time": 5
   }
 }

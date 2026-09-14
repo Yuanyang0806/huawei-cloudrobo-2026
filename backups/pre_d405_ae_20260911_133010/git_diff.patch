@@ -1,0 +1,21 @@
+diff --git a/configs/runtime/a1z_dryrun.yaml b/configs/runtime/a1z_dryrun.yaml
+index 821b88b..1dd050f 100644
+--- a/configs/runtime/a1z_dryrun.yaml
++++ b/configs/runtime/a1z_dryrun.yaml
+@@ -146,14 +146,14 @@ hardware:
+         # 腕部相机
+         cam_wrist:
+           type: opencv
+-          index_or_path: 4
++          index_or_path: 6
+           width: 640
+           height: 480
+           fps: 30
+         # 头部/全局相机
+         cam_external:
+           type: opencv
+-          index_or_path: 13
++          index_or_path: 14
+           width: 960
+           height: 540
+           fps: 30
